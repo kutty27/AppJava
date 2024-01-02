@@ -1,6 +1,11 @@
 pipeline {
     agent any
-
+    
+    tools
+    {
+    maven 'Maven_Home'
+    }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -11,7 +16,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def mvnHome = tool 'Maven_Home'
                     sh 'mvn clean install'
                 }
             }
@@ -20,7 +24,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    def mvnHome = tool 'Maven_Home'
                     sh 'mvn test'
                 }
             }
